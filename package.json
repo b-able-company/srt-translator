@@ -1,0 +1,83 @@
+{
+  "name": "srt-translator-desktop",
+  "version": "1.0.0",
+  "description": "SRT 자막 번역기 - 네이버 클라우드 플랫폼",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build-win": "electron-builder --win",
+    "build-mac": "electron-builder --mac",
+    "dist": "electron-builder --publish=never",
+    "clean": "rimraf dist node_modules package-lock.json && npm install"
+  },
+  "keywords": [
+    "srt",
+    "subtitle",
+    "translation",
+    "papago",
+    "naver-cloud"
+  ],
+  "author": "Your Company",
+  "license": "MIT",
+  "devDependencies": {
+    "@electron/universal": "^3.0.1",
+    "electron": "^22.3.27",
+    "electron-builder": "^23.6.0",
+    "rimraf": "^3.0.2"
+  },
+  "build": {
+    "appId": "com.yourcompany.srt-translator",
+    "productName": "SRT 자막 번역기",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "index.html",
+      "assets/**/*"
+    ],
+    "win": {
+      "icon": "assets/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "mac": {
+      "icon": "assets/icon.icns",
+      "category": "public.app-category.productivity",
+      "gatekeeperAssess": false,
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "universal"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "runAfterFinish": true,
+      "warningsAsErrors": false
+    },
+    "dmg": {
+      "title": "${productName}",
+      "icon": "assets/icon.icns"
+    }
+  }
+}
